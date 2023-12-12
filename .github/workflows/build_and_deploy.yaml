@@ -254,4 +254,3 @@ jobs:
         run: python command_center_deploy.py --root_directory=$GITHUB_WORKSPACE --files_list="$FILES"
 #         run: python command_center_deploy.py --root_directory=$GITHUB_WORKSPACE --files_list="$FILES"
 
-#         run: python command_center_deploy.py --root_directory=$GITHUB_WORKSPACE --files_list="$FILES"
