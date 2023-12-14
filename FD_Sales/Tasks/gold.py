@@ -83,9 +83,12 @@ class CreateGold:
                             ELSE false
                         END
                     WHEN NOT MATCHED THEN
-                        INSERT(transaction_id, customer_id, transaction_date, product_id, quantity, price, total_amount, discounted_amount, is_high_value_customer)
-                        VALUES(SOURCE.transaction_id, SOURCE.customer_id, SOURCE.transaction_date, SOURCE.product_id, SOURCE.quantity, SOURCE.price, SOURCE.total_amount,
-                               CASE WHEN SOURCE.total_amount > 50.00 THEN SOURCE.total_amount * 0.9 ELSE SOURCE.total_amount END,
+                        INSERT(transaction_id, customer_id, transaction_date, product_id, quantity,
+                        price, total_amount, discounted_amount, is_high_value_customer)
+                        VALUES(SOURCE.transaction_id, SOURCE.customer_id, SOURCE.transaction_date,
+                        SOURCE.product_id, SOURCE.quantity, SOURCE.price, SOURCE.total_amount,
+                               CASE WHEN SOURCE.total_amount > 50.00 THEN SOURCE.total_amount * 0.9
+                               ELSE SOURCE.total_amount END,
                                CASE WHEN SOURCE.total_amount > 50.00 THEN true ELSE false END);
             """
         ).collect()

@@ -1,6 +1,6 @@
 """
 This script is the main entry point when snowflake calls the
-python based store procedure. 
+python based store procedure.
 
 The script will create a SQL tasks that calls the python based
 store procedure.
@@ -61,7 +61,7 @@ def main(session: Session) -> str:
         CREATE OR REPLACE TASK {database}.{schema}.LOAD_FD_TAXI_FEATURES
             warehouse={warehouse}
             schedule='{schedule}'
-        AS 
+        AS
         CALL {database}.{schema}.{build_name}();
     """
     ).collect()

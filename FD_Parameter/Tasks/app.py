@@ -1,8 +1,8 @@
 """
-This script is the main entry point when snowflake calls the
-python based store procedure. 
+This script is the main entry point when snowflake calls
+the python based store procedure.
 
-The script requires all codes to create the bronze,, silver, 
+The script requires all codes to create the bronze,silver
 and gold layers for the feature domain PARAMETER.
 
 This script contains the following
@@ -65,7 +65,7 @@ def main(session: Session) -> str:
 
     # Supending init node
     alter_tasks(session, database, schema, SUSPEND=True)
-    
+
     # Creating gold task
     gold = CreateGold(session, database, schema, warehouse)
     gold.create_acid(acid_table, silver_table)

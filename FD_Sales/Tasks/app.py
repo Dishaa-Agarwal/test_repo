@@ -1,8 +1,8 @@
 """
 This script is the main entry point when snowflake calls the
-python based store procedure. 
+python based store procedure.
 
-The script requires all processes and codes to create the bronze, silver, 
+The script requires all processes and codes to create the bronze, silver,
 and gold layers for the feature domain SALES.
 
 This script contains the following

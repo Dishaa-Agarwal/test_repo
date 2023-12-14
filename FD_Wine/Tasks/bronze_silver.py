@@ -54,7 +54,7 @@ class CreateBronzeSilver:
                     CREATE OR REPLACE TASK {self.database}.{self.schema}.LOAD_FD_WINE_STAGE_INTO_BRONZE_RAW
                         warehouse={self.warehouse}
                         schedule='{schedule}'
-                    AS 
+                    AS
                     ALTER PIPE {pipe_name} REFRESH;
                 """
         ).collect()
@@ -83,10 +83,10 @@ class CreateBronzeSilver:
                     as
                     MERGE INTO {self.database}.{self.schema}.{silver_table} AS TARGET
                     USING (
-                    SELECT * 
-                        FROM {self.database}.{self.schema}.{bronze_table} 
-                        WHERE 
-                            FIXED_ACIDITY IS NOT NULL AND 
+                    SELECT *
+                        FROM {self.database}.{self.schema}.{bronze_table}
+                        WHERE
+                            FIXED_ACIDITY IS NOT NULL AND
                             VOLATILE_ACIDITY IS NOT NULL AND
                             CITRIC_ACID IS NOT NULL AND
                             RESIDUAL_SUGAR IS NOT NULL AND
@@ -114,7 +114,10 @@ class CreateBronzeSilver:
                         TARGET.ALCOHOL = SOURCE.ALCOHOL,
                         TARGET.QUALITY = SOURCE.QUALITY
                     WHEN NOT MATCHED THEN
-                        INSERT(ID, FIXED_ACIDITY, VOLATILE_ACIDITY, CITRIC_ACID, RESIDUAL_SUGAR, CHLORIDES, FREE_SULFER_DIOXIDE, TOTAL_SULFER_DIOXIDE, DENSITY, PH, SULPHATES, ALCOHOL, QUALITY)
-                        VALUES(SOURCE.ID, SOURCE.FIXED_ACIDITY, SOURCE.VOLATILE_ACIDITY, SOURCE.CITRIC_ACID, SOURCE.RESIDUAL_SUGAR, SOURCE.CHLORIDES, SOURCE.FREE_SULFER_DIOXIDE, SOURCE.TOTAL_SULFER_DIOXIDE, SOURCE.DENSITY, SOURCE.PH, SOURCE.SULPHATES, SOURCE.ALCOHOL, SOURCE.QUALITY);
+                        INSERT(ID, FIXED_ACIDITY, VOLATILE_ACIDITY, CITRIC_ACID, RESIDUAL_SUGAR,
+                        CHLORIDES, FREE_SULFER_DIOXIDE, TOTAL_SULFER_DIOXIDE, DENSITY, PH, SULPHATES, ALCOHOL, QUALITY)
+                        VALUES(SOURCE.ID, SOURCE.FIXED_ACIDITY, SOURCE.VOLATILE_ACIDITY,
+                        SOURCE.CITRIC_ACID, SOURCE.RESIDUAL_SUGAR, SOURCE.CHLORIDES, SOURCE.FREE_SULFER_DIOXIDE, SOURCE.TOTAL_SULFER_DIOXIDE,
+                        SOURCE.DENSITY, SOURCE.PH, SOURCE.SULPHATES, SOURCE.ALCOHOL, SOURCE.QUALITY);
             """
         ).collect()

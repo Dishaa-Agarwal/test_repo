@@ -148,10 +148,7 @@ if __name__ == "__main__":
         help="directory to deploy",
     )
     parser.add_argument(
-        "-f",
-        "--files_list",
-        dest="files_list",
-        help="list of files names to deploy",
+        "-f", "--files_list", dest="files_list", help="list of files names to deploy",
     )
     args = parser.parse_args()
 
@@ -167,4 +164,6 @@ if __name__ == "__main__":
             # There are SQL and/or Snowpark store procedures are present
             deploy_changes(args.root_directory, sql_sps, python_sps)
         else:
-            print("No SQL or Snowpark store procedures modified in the changed/updated/created file(s)")
+            print(
+                "No SQL or Snowpark store procedures modified in the changed/updated/created file(s)"
+            )

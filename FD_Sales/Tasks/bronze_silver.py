@@ -54,13 +54,13 @@ class CreateBronzeSilver:
                 CREATE OR REPLACE TASK {self.database}.{self.schema}.LOAD_FD_SALES_STAGE_INTO_BRONZE_RAW
                     warehouse={self.warehouse}
                     schedule='{schedule}'
-                AS 
+                AS
                 ALTER PIPE {pipe_name} REFRESH;
             """
         ).collect()
 
     def create_bronze_raw_silver_clean(
-        self, bronze_table, silver_table, after="LOAD_FD_SALES_STAGE_INTO_BRONZE_RAW"
+        self, bronze_table, silver_table, after="LOAD_FD_SALES_STAGE_INTO_BRONZE_RAW",
     ):
         """
         Method creates a task to upsert the raw data into the silver clean data.
@@ -82,10 +82,10 @@ class CreateBronzeSilver:
                     after {self.database}.{self.schema}.{after}
                     as MERGE INTO {self.database}.{self.schema}.{silver_table} AS TARGET
                 USING (
-                    SELECT * 
-                        FROM {self.database}.{self.schema}.{bronze_table} 
-                        WHERE 
-                            transaction_id IS NOT NULL AND 
+                    SELECT *
+                        FROM {self.database}.{self.schema}.{bronze_table}
+                        WHERE
+                            transaction_id IS NOT NULL AND
                             customer_id IS NOT NULL AND
                             transaction_date IS NOT NULL AND
                             product_id IS NOT NULL AND
@@ -103,6 +103,7 @@ class CreateBronzeSilver:
                     TARGET.total_amount = SOURCE.total_amount
                 WHEN NOT MATCHED THEN
                     INSERT(transaction_id, customer_id, transaction_date, product_id, quantity, price, total_amount)
-                    VALUES(SOURCE.transaction_id, SOURCE.customer_id, SOURCE.transaction_date, SOURCE.product_id, SOURCE.quantity, SOURCE.price, SOURCE.total_amount);
+                    VALUES(SOURCE.transaction_id, SOURCE.customer_id, SOURCE.transaction_date, SOURCE.product_id,
+                    SOURCE.quantity, SOURCE.price, SOURCE.total_amount);
             """
         ).collect()

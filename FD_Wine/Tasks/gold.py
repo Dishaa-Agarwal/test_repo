@@ -68,7 +68,7 @@ class CreateGold:
                 AS
                     MERGE INTO {self.database}.{self.schema}.{gold_table_name} AS TARGET
                     USING (
-                        SELECT 
+                        SELECT
                             ID,
                             FIXED_ACIDITY,
                             VOLATILE_ACIDITY,
@@ -85,7 +85,8 @@ class CreateGold:
                         TARGET.SUM_ACIDITY = SOURCE.SUM_ACIDITY
                     WHEN NOT MATCHED THEN
                         INSERT(ID, FIXED_ACIDITY, VOLATILE_ACIDITY, AVG_ACIDITY, SUM_ACIDITY)
-                        VALUES(SOURCE.ID, SOURCE.FIXED_ACIDITY, SOURCE.VOLATILE_ACIDITY, SOURCE.AVG_ACIDITY, SOURCE.SUM_ACIDITY);
+                        VALUES(SOURCE.ID, SOURCE.FIXED_ACIDITY, SOURCE.VOLATILE_ACIDITY,
+                        SOURCE.AVG_ACIDITY, SOURCE.SUM_ACIDITY);
             """
         ).collect()
 
@@ -189,6 +190,7 @@ class CreateGold:
                         TARGET.ALCOHOL = SOURCE.ALCOHOL
                     WHEN NOT MATCHED THEN
                         INSERT(ID, CITRIC_ACID, RESIDUAL_SUGAR, CHLORIDES, DENSITY, PH, SULPHATES, ALCOHOL)
-                        VALUES(SOURCE.ID, SOURCE.CITRIC_ACID, SOURCE.RESIDUAL_SUGAR, SOURCE.CHLORIDES, SOURCE.DENSITY, SOURCE.PH, SOURCE.SULPHATES, SOURCE.ALCOHOL);
+                        VALUES(SOURCE.ID, SOURCE.CITRIC_ACID, SOURCE.RESIDUAL_SUGAR,
+                        SOURCE.CHLORIDES, SOURCE.DENSITY, SOURCE.PH, SOURCE.SULPHATES, SOURCE.ALCOHOL);
             """
         ).collect()
