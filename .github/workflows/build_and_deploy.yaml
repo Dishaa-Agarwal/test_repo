@@ -177,10 +177,10 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: "true"  # Set this to "true" if you want to lint all files
           GITHUB_TOKEN: ${{ secrets.SERVICE_NOW_TOKEN }}
-      - name: Lint SQL using SQLFluff with Dialect
-        uses: docker://sqlfluff/sqlfluff:latest
-        with:
-          args: lint --dialect ansi .
+      - name: Install SQLFluff
+        run: pip install sqlfluff
+      - name: Run SQLFluff
+        run: sqlfluff lint Accenture_FeatureStore-dev/tester_sql.sqlfluff
   deploy:
     runs-on: ubuntu-latest
     needs: lint_dev  # Make sure linting is successful before deploying
