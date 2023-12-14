@@ -2,7 +2,7 @@
 
 This guide provides step-by-step instructions to set up your local environment for a project involving Snowflake and ServiceNow.
 
-1. Create a Snowflake Account: Visit the [Snowflake website](https://www.snowflake.com/) and sign up for a Snowflake account.
+1. Create a Snowflake Account: Visit the [Snowflake site](https://www.snowflake.com/) and sign up for a Snowflake account.
 
 2. Install Visual Studio Code (VSCode): Download and install Visual Studio Code from [here](https://code.visualstudio.com/download).
 
@@ -21,7 +21,7 @@ This guide provides step-by-step instructions to set up your local environment f
    3. Click on the Snowflake icon in the sidebar.
    4. Enter your Snowflake account credentials to log in.
 
-5. Install Anaconda: Download and install Anaconda from (https://www.anaconda.com/products/individual).
+5. Install Anaconda: Download and install Anaconda from <https://www.anaconda.com/products/individual>.
 
 6. Navigate to the Project Folder with Feature Stores: Use the file option above in VSCode and click on open folder and select the appropriate folder available on your local machine.
 
@@ -33,9 +33,9 @@ This guide provides step-by-step instructions to set up your local environment f
    conda create --file=./environment.yml
    ```
 ## Deployment
-Deployment is configured using CI/CD. You can either deploy the code in 2 ways: Please view Additional Information or setup a git repo and commit/push to branches within the build_and_deployment.yaml file.
+Deployment is configured using CI/CD. You can either deploy the code in 2 ways: Please view Additional Information or setup a git repository and commit/push to branches within the build_and_deployment.yaml file.
 
-Note: The repo was built using GitHub's workflow jobs for CI/CD execution.
+Note: The repository was built using GitHub's workflow jobs for CI/CD execution.
 
 ## Naming Convention
 - Feature Domain Folders: FD_<domain_name>
