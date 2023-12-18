@@ -269,7 +269,6 @@
 #           FILES: ${{ steps.filenames.outputs.all }}
 #         run: python command_center_deploy.py --root_directory=$GITHUB_WORKSPACE --files_list="$FILES"
 name: Deploy Snowpark Apps
- 
 # Controls when the action will run.
 on:
   pull_request:
@@ -290,7 +289,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
  
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.target_branch == 'dev' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.target_branch == 'dev' || inputs.target_branch == 'test' || inputs.target_branch == 'release') }}
  
     steps:
       - name: Checkout repository
