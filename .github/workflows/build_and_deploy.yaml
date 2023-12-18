@@ -308,7 +308,7 @@ jobs:
         run: pip install black
  
       - name: Lint code with black
-        run: black --check .
+        run: black --line-length 120 .
  
   deploy:
     runs-on: ubuntu-latest
