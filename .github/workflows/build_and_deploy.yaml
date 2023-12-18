@@ -308,6 +308,12 @@ jobs:
  
       - name: Lint code with black
         run: black --line-length 120 .
+
+      - name: Install SQLFLUFF
+        run: pip install sqlfluff
+
+      - name: Lint code with SqlFluff
+        run: sqlfluff lint
  
   deploy:
     runs-on: ubuntu-latest
