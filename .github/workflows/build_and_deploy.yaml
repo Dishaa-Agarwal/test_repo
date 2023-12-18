@@ -284,12 +284,13 @@ on:
           - dev
           - test
           - release
+          - master
  
 jobs:
   lint:
     runs-on: ubuntu-latest
  
-    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.target_branch == 'dev' || inputs.target_branch == 'test' || inputs.target_branch == 'release') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.target_branch == 'dev' || inputs.target_branch == 'test' || inputs.target_branch == 'release'|| inputs.target_branch == 'master') }}
  
     steps:
       - name: Checkout repository
