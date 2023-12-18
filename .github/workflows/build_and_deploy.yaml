@@ -314,6 +314,7 @@ jobs:
 
       - name: Lint code with SqlFluff
         run: sqlfluff lint --dialect snowflake
+             sqlfluff --max_line_length 120.
  
   deploy:
     runs-on: ubuntu-latest
