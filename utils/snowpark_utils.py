@@ -23,9 +23,7 @@ def get_snowpark_session() -> Session:
         session = SnowflakeConnection().connection
     elif os.path.exists(os.path.expanduser("./config")):
         snowpark_config = get_snowsql_config()
-        SnowflakeConnection().connection = Session.builder.configs(
-            snowpark_config
-        ).create()
+        SnowflakeConnection().connection = Session.builder.configs(snowpark_config).create()
     # otherwise configure from environment variables
     elif "SNOWSQL_ACCOUNT" in os.environ:
         snowpark_config = {
@@ -37,9 +35,7 @@ def get_snowpark_session() -> Session:
             "database": os.environ["SNOWSQL_DATABASE"],
             "schema": os.environ["SNOWSQL_SCHEMA"],
         }
-        SnowflakeConnection().connection = Session.builder.configs(
-            snowpark_config
-        ).create()
+        SnowflakeConnection().connection = Session.builder.configs(snowpark_config).create()
 
     if SnowflakeConnection().connection:
         return SnowflakeConnection().connection  # type: ignore
@@ -51,10 +47,7 @@ def get_snowpark_session() -> Session:
 # since this will be called outside the snowcli app context.
 # TODO: It would be nice to get rid of this entirely and always use creds.json but
 # need to update snowcli to make that happen
-def get_snowsql_config(
-    connection_name: str = "main",
-    config_file_path: str = os.path.expanduser("./config"),
-) -> dict:
+def get_snowsql_config(connection_name: str = "main", config_file_path: str = os.path.expanduser("./config"),) -> dict:
     import configparser
 
     snowsql_to_snowpark_config_mapping = {
@@ -74,10 +67,7 @@ def get_snowsql_config(
         config.read(config_file_path)
         session_config = config[connection_path]
         # Convert snowsql connection variable names to snowcli ones
-        session_config_dict = {
-            snowsql_to_snowpark_config_mapping[k]: v.strip('"')
-            for k, v in session_config.items()
-        }
+        session_config_dict = {snowsql_to_snowpark_config_mapping[k]: v.strip('"') for k, v in session_config.items()}
         return session_config_dict
     except Exception:
         raise Exception("Error getting snowsql config details")

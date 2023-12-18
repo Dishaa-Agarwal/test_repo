@@ -41,10 +41,7 @@ class CreateGold:
         self.warehouse = warehouse
 
     def create_acid(
-        self,
-        gold_table_name,
-        silver_table_name,
-        after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
+        self, gold_table_name, silver_table_name, after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
     ):
         """
         Method creates the acid feature table from the
@@ -91,10 +88,7 @@ class CreateGold:
         ).collect()
 
     def create_dioxide(
-        self,
-        gold_table_name,
-        silver_table_name,
-        after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
+        self, gold_table_name, silver_table_name, after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
     ):
         """
         Method creates the dioxide feature table from the
@@ -140,10 +134,7 @@ class CreateGold:
         ).collect()
 
     def create_other_features(
-        self,
-        gold_table_name,
-        silver_table_name,
-        after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
+        self, gold_table_name, silver_table_name, after="LOAD_FD_WINE_BRONZE_RAW_INTO_SILVER_CLEAN",
     ):
         """
         Method creates other feature tables for the feature

@@ -168,9 +168,7 @@ class CreateBronzeSilver:
             """
         ).collect()
 
-    def create_bronze_raw_silver_clean(
-        self, bronze_table, silver_table, after="LOAD_FD_SALES_STAGE_INTO_BRONZE_RAW"
-    ):
+    def create_bronze_raw_silver_clean(self, bronze_table, silver_table, after="LOAD_FD_SALES_STAGE_INTO_BRONZE_RAW"):
         """
         Method creates a task to upsert the raw data into the silver clean data.
 

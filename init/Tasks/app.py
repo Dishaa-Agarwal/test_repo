@@ -34,9 +34,7 @@ def main(session: Session) -> str:
     schema = "FEATURESTORE_SCHEMA"
 
     # Creating tasks that calls build
-    param_1 = session.sql(
-        f"SELECT PARAM_1 FROM {database}.{schema}.PARAMETERS"
-    ).collect()[0][0]
+    param_1 = session.sql(f"SELECT PARAM_1 FROM {database}.{schema}.PARAMETERS").collect()[0][0]
 
     _ = session.sql(
         f"""

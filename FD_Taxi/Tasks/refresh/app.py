@@ -28,9 +28,7 @@ def alter_tasks(session, database, schema):
         schema name
     """
 
-    _ = session.sql(
-        f"ALTER TASK {database}.{schema}.LOAD_FD_TAXI_FEATURES RESUME"
-    ).collect()
+    _ = session.sql(f"ALTER TASK {database}.{schema}.LOAD_FD_TAXI_FEATURES RESUME").collect()
 
 
 def main(session: Session) -> str:

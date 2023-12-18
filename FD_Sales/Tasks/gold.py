@@ -37,10 +37,7 @@ class CreateGold:
         self.warehouse = warehouse
 
     def create_gold(
-        self,
-        gold_table_name,
-        silver_table_name,
-        after="LOAD_FD_SALES_BRONZE_RAW_INTO_SILVER_CLEAN",
+        self, gold_table_name, silver_table_name, after="LOAD_FD_SALES_BRONZE_RAW_INTO_SILVER_CLEAN",
     ):
         """
         Method creates the GOLD feature table from the
