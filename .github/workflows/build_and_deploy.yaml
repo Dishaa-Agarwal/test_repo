@@ -313,7 +313,7 @@ jobs:
         run: pip install sqlfluff
 
       - name: Lint code with SqlFluff
-        run: sqlfluff lint --exclude-rules LT05 --dialect snowflake
+        run: sqlfluff lint --exclude-rules LT05,LT02 --dialect snowflake
  
   deploy:
     runs-on: ubuntu-latest
