@@ -13,11 +13,6 @@ functions:
     * deploy_all - deploys all sql and snowpark store procedures
 """
 
-
-
-
-
-
 import os
 import sys
 
