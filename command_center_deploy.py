@@ -2,16 +2,17 @@
 The script deploys the modifiied SQL and Snowpark based store procedures to
 the assigned snowflake workspace.
 
-If the user wants to deploy all store procedures within the repo, then un-comment 
+If the user wants to deploy all store procedures within the repo, then un-comment
     # args.files_list = "ALL"
 
 This script contains the following
 functions:
-    * check_store_procedures - checks modified files and verfies if 
+    * check_store_procedures - checks modified files and verfies if
         the file is a store procedure
     * deploy_changes - only deploys the modified store procedures
     * deploy_all - deploys all sql and snowpark store procedures
 """
+
 
 import os
 import sys
@@ -104,7 +105,11 @@ def deploy_all(root_directory):
         base_name = os.path.basename(directory_path)
 
         # If sql based store procedure is present then deploy to workspace
-        files_in = [f for f in file_names if "tables.sql" in f or "pipeline_stage.sql" in f or "create.sql" in f]
+        files_in = [
+            f
+            for f in file_names
+            if "tables.sql" in f or "pipeline_stage.sql" in f or "create.sql" in f
+        ]
         if files_in:
             print(f"Found sql based store procedure in folder {directory_path}")
             for f in files_in:
@@ -137,10 +142,17 @@ def deploy_all(root_directory):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument(
-        "-d", "--root_directory", dest="root_directory", required=True, help="directory to deploy",
+        "-d",
+        "--root_directory",
+        dest="root_directory",
+        required=True,
+        help="directory to deploy",
     )
     parser.add_argument(
-        "-f", "--files_list", dest="files_list", help="list of files names to deploy",
+        "-f",
+        "--files_list",
+        dest="files_list",
+        help="list of files names to deploy",
     )
     args = parser.parse_args()
 
@@ -156,4 +168,6 @@ if __name__ == "__main__":
             # There are SQL and/or Snowpark store procedures are present
             deploy_changes(args.root_directory, sql_sps, python_sps)
         else:
-            print("No SQL or Snowpark store procedures modified in the changed/updated/created file(s)")
+            print(
+                "No SQL or Snowpark store procedures modified in the changed/updated/created file(s)"
+            )
