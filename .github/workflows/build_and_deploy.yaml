@@ -36,7 +36,9 @@ jobs:
           pip install --upgrade pre-commit
 
       - name: Run pre-commit
-        run: pre-commit run --all-files
+        run: |
+          pre-commit autoupdate 
+          pre-commit run --all-files
 
       - name: Install black
         run: pip install black
