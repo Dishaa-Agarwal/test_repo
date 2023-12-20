@@ -37,7 +37,7 @@ jobs:
 
       - name: Run pre-commit
         run: |
-          pre-commit autoupdate 
+          pre-commit autoupdate
           pre-commit run --all-files
 
       # - name: Install black
